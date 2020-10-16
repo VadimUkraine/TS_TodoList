@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {  
+    "target": "es5", 
+    "lib": [                                 
+      "esnext",
+      "dom"
+    ],
+    "jsx": "react",                    
+    "declaration": true,                      
+    "sourceMap": true,                        
+    "outDir": "./public",                      
+    "strict": true,                           
+    "noImplicitAny": false,
+    "moduleResolution": "node",               
+    "typeRoots": [                            
+      "node_modules/@types",
+      "src/typings.d.ts"
+    ],
+    "esModuleInterop": true,       
+    "experimentalDecorators": true,        
+    "emitDecoratorMetadata": true           
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "src"
+  ]
+}
