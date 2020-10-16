@@ -3,7 +3,7 @@ import { IActions } from './actions';
 
 
 const initialState = {
-  items: ['sads', 'sdsadsa',] as string[],
+  list: ['buy milk', 'drink water',] as string[],
 };
 
 export type IReduxState = typeof initialState;

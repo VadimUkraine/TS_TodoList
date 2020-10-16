@@ -3,7 +3,7 @@ import { todoReducer } from './pages/Todo/reducer';
 
 
 const rootReducer = combineReducers({
-  todoList: todoReducer,
+  todo: todoReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

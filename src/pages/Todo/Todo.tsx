@@ -7,6 +7,10 @@ import './Todo.scss';
 
 export const Todo: React.FC = () => {
 
-  return (<div className="blue">LIST</div>)
+  return (
+    <div className="todo">
+      LIST
+    </div>
+  )
 
 }
