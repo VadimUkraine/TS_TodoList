@@ -108,8 +108,7 @@ module.exports = {
   mode: 'development',
   entry: './index.tsx',
   output: {
-    // filename: filename('js'),
-    filename: 'bundle-[hash].js',
+    filename: filename('js'),
     path: path.resolve(__dirname, 'public')
   },
   resolve:{
@@ -168,14 +167,14 @@ module.exports = {
         loader: 'ts-loader',
         enforce: 'pre',
       },
-      // { 
-      //   test: /\.jsx$/, 
-      //   exclude: /node_modules/, 
-      //   loader:{
-      //     loader: 'babel-loader',
-      //     options: babelOptions('@babel/preset-react'),
-      //   } 
-      // },
+      { 
+        test: /\.jsx$/, 
+        exclude: /node_modules/, 
+        loader:{
+          loader: 'babel-loader',
+          options: babelOptions('@babel/preset-react'),
+        } 
+      },
     ]
   }
 }
