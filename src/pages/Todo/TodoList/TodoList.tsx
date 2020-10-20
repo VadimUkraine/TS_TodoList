@@ -2,9 +2,9 @@
 import React from "react";
 import List from "@material-ui/core/List";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../rootReducer";
+import { RootState } from "@/rootReducer";
 import { deleteTodoRequest } from "../actions";
-import TodoListItem from "../../../components/TodoListItem";
+import TodoListItem from "@/components/TodoListItem";
 
 export const TodoList: React.FC = () => {
 
@@ -18,10 +18,7 @@ export const TodoList: React.FC = () => {
 
 
   return(
-    <List 
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-    >
+    <List >
       {list.map((todo: string, index: number)=>(
         <TodoListItem 
           key={index} 

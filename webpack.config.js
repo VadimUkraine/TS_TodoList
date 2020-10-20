@@ -28,24 +28,6 @@ const optimization = () =>{
 
 const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}` 
 
-const cssLoader = (extra) =>{
-  const loaders = [
-    {
-      loader: MiniCssExtractPlugin.loader,
-      options: {
-        hmr: isDev,
-        reloadAll: true,
-      },
-    }, 'css-loader', 
-  ]
-
-  if(extra){
-    loaders.push(extra)
-  }
-
-  return loaders
-}
-
 const babelOptions =(preset) =>{
 
   const opts = {
@@ -112,7 +94,7 @@ module.exports = {
     path: path.resolve(__dirname, 'public')
   },
   resolve:{
-    extensions:['.js', '.json', '.png', '.ts', '.tsx'],
+    extensions:['.js', '.json', '.ts', '.tsx'],
     alias:{
       '@': path.resolve(__dirname, 'src')
     }
@@ -121,7 +103,6 @@ module.exports = {
   devServer:{
     port: 4200,
     hot: isDev,
-    contentBase: 'public',
   },
   devtool: isDev ? 'source-map' : '',
   plugins: plugins(),
@@ -129,26 +110,15 @@ module.exports = {
     rules:[
       {
         test:/\.css$/,
-        use: cssLoader(), 
-      },
-      {
-        test: /\.(png|jpg|svg|gif)$/,
-        use:['file-loader']
-      },
-      {
-        test: /\.(ttf|woff|woff2|eot)$/,
-        use: ['file-loader']
-      },{
-        test: /\.xml$/,
-        use: ['xml-loader']
-      },
-      {
-        test: /\.csv$/,
-        use: ['csv-loader']
-      },
-      {
-        test:/\.s[ac]ss$/,
-        use:cssLoader('sass-loader'),
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: isDev,
+              reloadAll: true,
+            },
+          }, 'css-loader', 
+        ], 
       },
       { 
         test: /\.js$/, 
@@ -159,13 +129,11 @@ module.exports = {
         test: /\.ts$/, 
         exclude: /node_modules/, 
         loader: 'ts-loader',
-        enforce: 'pre',
       },
       { 
         test: /\.tsx$/, 
         exclude: /node_modules/, 
         loader: 'ts-loader',
-        enforce: 'pre',
       },
       { 
         test: /\.jsx$/, 
