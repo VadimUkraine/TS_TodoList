@@ -1,5 +1,5 @@
 {
-  "name": "TS_TodoList",
+  "name": "TodoList",
   "version": "1.0.0",
   "description": "webpack",
   "private": true,
@@ -24,6 +24,8 @@
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
     "@types/node": "^14.11.8",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.9",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",

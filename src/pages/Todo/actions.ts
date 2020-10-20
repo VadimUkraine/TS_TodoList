@@ -1,8 +1,21 @@
-import * as c from './constants';
+import * as c from "./constants";
 
 export function getTodoListRequest() {
   return {
     type: c.GET_TODO_LIST_ITEMS_REQUEST,
+  };
+}
+
+export function getTodoListSuccess(list: string[]) {
+  return {
+    type: c.GET_TODO_LIST_ITEMS_SUCCESS,
+    payload: { list },
+  };
+}
+
+export function getTodoListFailure() {
+  return {
+    type: c.GET_TODO_LIST_ITEMS_FAILURE,
   };
 }
 
@@ -51,6 +64,8 @@ export function deleteTodoFailure() {
 
 export type IActions =
   | ReturnType<typeof getTodoListRequest>
+  | ReturnType<typeof getTodoListSuccess>
+  | ReturnType<typeof getTodoListFailure>
   | ReturnType<typeof addTodoRequest>
   | ReturnType<typeof addTodoSuccess>
   | ReturnType<typeof addTodoFailure>

@@ -1,24 +1,27 @@
-import React from 'react';
-import './Todo.scss';
-import FormAddTodo from './FormAddTodo';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../rootReducer';
+import React from "react";
+import FormAddTodo from "./FormAddTodo";
+import TodoList from "./TodoList";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 
-
-
-
+const useStyles = makeStyles(() =>
+  createStyles({
+    todoStyles: {
+      padding: "10px 5px",
+      margin: "0 auto",
+      maxWidth: "500px",
+    },
+  }),
+);
 
 
 export const Todo: React.FC = () => {
 
-  const list = useSelector((state: RootState) => state.todo.list);
-
-
+  const classes = useStyles();
 
   return (
-    <div className="todo">
-      <FormAddTodo/>      
+    <div className={classes.todoStyles}>
+      <FormAddTodo/>   
+      <TodoList/>  
     </div>
   )
-
 }
