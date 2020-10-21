@@ -6,7 +6,6 @@ import { getTodoListRequest } from "./pages/Todo/actions";
 
 
 export const App = () => {
-
   const dispatch = useDispatch();
 
   useEffect(() => {

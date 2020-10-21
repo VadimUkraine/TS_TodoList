@@ -2,9 +2,9 @@
 import React from "react";
 import List from "@material-ui/core/List";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/rootReducer";
+import { RootState } from "../../../rootReducer";
 import { deleteTodoRequest } from "../actions";
-import TodoListItem from "@/components/TodoListItem";
+import TodoListItem from "../../../components/TodoListItem";
 
 export const TodoList: React.FC = () => {
 
