@@ -2,8 +2,6 @@ const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 
@@ -18,7 +16,6 @@ const optimization = () =>{
 
   if(!isDev){
     config.minimizer = [
-      new OptimizeCssAssetsWebpackPlugin(),
       new TerserWebpackPlugin(),
     ]
   }
@@ -27,35 +24,6 @@ const optimization = () =>{
 }
 
 const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}` 
-
-const babelOptions =(preset) =>{
-
-  const opts = {
-    presets:[
-      '@babel/preset-env',
-    ]
-  }
-
-  if(preset){
-    opts.presets.push(preset)
-  }
-
-  return opts
-}
-
-const jsLoaders = () =>{
-
-  const loaders = [{
-    loader: 'babel-loader',
-    options: babelOptions(),
-  }]
-
-  if(isDev){
-    loaders.push('eslint-loader')
-  }
-
-  return  loaders
-}
 
 const plugins = () =>{
   const base = [
@@ -73,15 +41,10 @@ const plugins = () =>{
         to: path.resolve(__dirname, 'public'),
       }
     ]}),
-    new MiniCssExtractPlugin({
-      filename: filename('css'),
-    })
   ]
-
   if(!isDev){
     base.push(new BundleAnalyzerPlugin())
   }
-
   return base;
 }
 
@@ -94,7 +57,7 @@ module.exports = {
     path: path.resolve(__dirname, 'public')
   },
   resolve:{
-    extensions:['.js', '.json', '.ts', '.tsx'],
+    extensions:[ '.tsx', '.ts', '.js'],
     alias:{
       '@': path.resolve(__dirname, 'src')
     }
@@ -108,40 +71,13 @@ module.exports = {
   plugins: plugins(),
   module:{
     rules:[
-      {
-        test:/\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: isDev,
-              reloadAll: true,
-            },
-          }, 'css-loader', 
-        ], 
-      },
       { 
-        test: /\.js$/, 
+        test: /\.tsx?$/, 
         exclude: /node_modules/, 
-        use: jsLoaders(),
-      },
-      { 
-        test: /\.ts$/, 
-        exclude: /node_modules/, 
-        loader: 'ts-loader',
-      },
-      { 
-        test: /\.tsx$/, 
-        exclude: /node_modules/, 
-        loader: 'ts-loader',
-      },
-      { 
-        test: /\.jsx$/, 
-        exclude: /node_modules/, 
-        loader:{
-          loader: 'babel-loader',
-          options: babelOptions('@babel/preset-react'),
-        } 
+        use: [{
+          loader: 'ts-loader',
+          options: {transpileOnly: true}
+        }],
       },
     ]
   }
