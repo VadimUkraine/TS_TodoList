@@ -74,13 +74,12 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,md,css,scss,html}": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.{ts,tsx,js,jsx}": [
-      "eslint --fix",
-      "git add"
+
+      "tslint --fix"
+  
+
     ]
+
 
   },
   "husky": {
