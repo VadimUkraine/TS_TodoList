@@ -74,10 +74,13 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,md,css,scss,html}": [
-
+      "prettier --write"
+    ],
+    "*.{ts,tsx,js}": [
+      "node_modules/.bin/eslint --max-warnings=0"
+    ],
+    "*.{ts,tsx,js, jsx}": [
       "tslint --fix"
-  
-
     ]
 
 
