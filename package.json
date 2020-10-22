@@ -75,12 +75,12 @@
   "lint-staged": {
     "*.{ts,tsx,js,md}": [
       "node_modules/.bin/eslint --max-warnings=0",
-      "prettier --write",
-      "git add"
+      "prettier --write"
+
     ],
     "*.{ts,tsx,jsx}": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
+     
     ]
 
   },
