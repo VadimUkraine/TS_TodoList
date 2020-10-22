@@ -73,13 +73,11 @@
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,md,css,scss,html}": [
-      "prettier --write"
-    ],
+ 
+
     "*.{ts,tsx,js}": [
-      "node_modules/.bin/eslint --max-warnings=0"
-    ],
-    "*.{ts,tsx,js, jsx}": [
+      "node_modules/.bin/eslint --max-warnings=0",
+      "prettier --write",
       "tslint --fix"
     ]
 
