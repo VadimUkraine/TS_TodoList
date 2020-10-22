@@ -28,7 +28,18 @@ src - main folder, containing the following folders: components, global, hoc, ho
 
 components - contains common components that are used throughout the project and from which the main project pages are created
 
-global  - 
+global  - here we store images, styles, video, audio files, api files, error handlers, utilities
+
+hoc - here we store react hoc components
+
+hooks - here we store custom react hooks
+
+pages - contains files of project pages that consists from files of the following folders: components, global, hoc, hooks
+
+In folder pages, each page has its own files concerning actions, sagas, constants, interfaces, reducer, utils that the specific page uses.
+This is done in order not to run through all the files in some shared folder with actions to find a specific action/reducer. saga and so on.
+
+Root saga and reducer moved to the folder level of src
 
 
 
