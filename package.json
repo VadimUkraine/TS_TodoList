@@ -74,8 +74,10 @@
   },
   "lint-staged": {
     "*.{ts, tsx, js, jsx}": [
-      "node_modules/.bin/eslint --max-warnings=0",
-      "prettier --write"
+      "eslint --fix",
+      "tslint --fix",
+      "prettier --write",
+      "git add"
     ]
   },
   "husky": {

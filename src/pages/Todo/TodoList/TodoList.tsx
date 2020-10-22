@@ -20,7 +20,7 @@ export const TodoList: React.FC = () => {
   return(
     <List >
       {list.map((todo: string, index: number)=>(
-        <TodoListItem key={index} todo={todo} deleteTodo={handleDelete}   />
+        <TodoListItem key={index} todo={todo} deleteTodo={handleDelete}  />
       ))}
     </List>
   )

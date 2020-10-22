@@ -25,6 +25,6 @@
     "**/*.spec.ts"
   ],
   "include": [
-    "src", "jest.config.js"
+    "src", "jest.tsconfig.json"
   ]
 }
