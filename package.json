@@ -73,7 +73,7 @@
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,md,css,scss,html}": [
+    "*.{ts,tsx,js,md}": [
       "prettier --write",
       "git add"
     ],
