@@ -11,18 +11,15 @@ export const TodoList: React.FC = () => {
   const dispatch = useDispatch();
   const list = useSelector((state: RootState) => state.todo.list);
 
-  const handleDelete = (todo: string) =>{
-    dispatch(deleteTodoRequest(todo))
+  const handleDelete = (todo: string) => {
+    dispatch(deleteTodoRequest(todo));
   }
-
-
 
   return(
     <List >
       {list.map((todo: string, index: number)=>(
-        <TodoListItem key={index} todo={todo} deleteTodo={handleDelete}     />
+        <TodoListItem key={index} todo={todo} deleteTodo={handleDelete} />
       ))}
     </List>
   )
 }
-

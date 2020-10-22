@@ -12,10 +12,6 @@
     "browser": true
   },
   "extends": [
-    // "plugin:@typescript-eslint/recommended",
-    // "prettier/@typescript-eslint",
-    // "plugin:prettier/recommended"
-
     "eslint:recommended",
     "plugin:react/recommended",
     "airbnb-base",

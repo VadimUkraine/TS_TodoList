@@ -9,7 +9,6 @@
     "build": "npm run eslint && cross-env NODE_ENV=production webpack --mode production",
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
     "stats": "webpack --json > stats.json && webpack-bundle-analyzer stats.json",
-    "precommit": "lint-staged",
     "eslint": "node_modules/.bin/eslint src/"
   },
   "browserslist": "> 0.25%, not dead",
@@ -73,15 +72,9 @@
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$"
   },
   "lint-staged": {
- 
-
     "*.{ts,tsx,js}": [
-      "node_modules/.bin/eslint --max-warnings=0",
-      "prettier --write",
-      "tslint --fix"
+      "node_modules/.bin/eslint --max-warnings=0"
     ]
-
-
   },
   "husky": {
     "hooks": {
