@@ -19,7 +19,7 @@ export const Todo: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.todoStyles}>
+    <div className={classes.todoStyles} data-testid={"todo-root-component"}>
       <FormAddTodo/>   
       <TodoList/>  
     </div>
