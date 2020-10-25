@@ -1,18 +1,15 @@
 import React from "react";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import FormAddTodo from "./FormAddTodo";
 import TodoList from "./TodoList";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    todoStyles: {
-      padding: "10px 5px",
-      margin: "0 auto",
-      maxWidth: "500px",
-    },
-  }),
-);
-
+const useStyles = makeStyles(() => createStyles({
+  todoStyles: {
+    padding: "10px 5px",
+    margin: "0 auto",
+    maxWidth: "500px",
+  },
+}));
 
 export const Todo: React.FC = () => {
 
@@ -20,8 +17,10 @@ export const Todo: React.FC = () => {
 
   return (
     <div className={classes.todoStyles} data-testid={"todo-root-component"}>
-      <FormAddTodo/>   
-      <TodoList/>  
+      <FormAddTodo/>
+      <TodoList/>
     </div>
-  )
-}
+  );
+};
+
+export default Todo;

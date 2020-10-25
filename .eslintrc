@@ -1,7 +1,18 @@
 {
   "rules":{
     "no-unused-vars": "warn",
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "quotes": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    "no-use-before-define": 0,
+    "react/prop-types": 0,
+    "padded-blocks": 0
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   },
   "env": {
     "es6": true,

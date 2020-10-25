@@ -1,7 +1,6 @@
 import { IActions } from "./actions";
 import * as c from "./constants";
 
-
 const initialState = {
   list: [] as string[],
 };

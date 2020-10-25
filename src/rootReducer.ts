@@ -1,7 +1,6 @@
 import { combineReducers } from "redux";
 import { todoReducer } from "./pages/Todo/reducer";
 
-
 const rootReducer = combineReducers({
   todo: todoReducer,
 });

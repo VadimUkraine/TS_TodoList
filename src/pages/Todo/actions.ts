@@ -39,7 +39,6 @@ export function addTodoFailure() {
   };
 }
 
-
 export function deleteTodoRequest(todo: string) {
   return {
     type: c.DELETE_TODO_REQUEST,
@@ -59,8 +58,6 @@ export function deleteTodoFailure() {
     type: c.DELETE_TODO_FAILURE,
   };
 }
-
-
 
 export type IActions =
   | ReturnType<typeof getTodoListRequest>

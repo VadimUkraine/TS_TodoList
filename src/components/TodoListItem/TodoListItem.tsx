@@ -1,4 +1,3 @@
-
 import React from "react";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
@@ -11,14 +10,13 @@ interface IProps {
   deleteTodo: (todo: string)=> void;
 }
 
+export const TodoListItem: React.FC<IProps> = ({ todo, deleteTodo }) => {
 
-export const TodoListItem: React.FC<IProps> = ({todo, deleteTodo}) => {
+  const handleDelete = () => {
+    deleteTodo(todo);
+  };
 
-  const handleDelete = () =>{
-    deleteTodo(todo)
-  }
-
-  return(
+  return (
       <>
         <ListItem>
           <ListItemText
@@ -29,7 +27,9 @@ export const TodoListItem: React.FC<IProps> = ({todo, deleteTodo}) => {
               <DeleteIcon />
             </IconButton>
           </ListItemSecondaryAction>
-        </ListItem>  
-      </> 
-  )
-}
+        </ListItem>
+      </>
+  );
+};
+
+export default TodoListItem;
