@@ -10,11 +10,7 @@ export const App = () => {
     dispatch(getTodoListRequest());
   }, []);
 
-  return (
-    <>
-      <Todo />
-    </>
-  );
+  return (<Todo />);
 };
 
 export default App;
