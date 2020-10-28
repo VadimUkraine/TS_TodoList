@@ -1,25 +1,22 @@
 import React from "react";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import ListItemText from "@material-ui/core/ListItemText";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
 import { render, fireEvent, screen } from "@testing-library/react";
+import TodoListItem from "../components/TodoListItem";
 
-test('calls onClick to delete todo list item', () => {
-  const handleClick = jest.fn();
-  render(
-    <ListItem>
-      <ListItemText
-        primary={"todo"}
-      />
-      <ListItemSecondaryAction >
-        <IconButton edge="end" aria-label="delete" onClick={handleClick} data-testid={"todo-list-delete-btn"}>
-          <DeleteIcon />
-        </IconButton>
-      </ListItemSecondaryAction>
-    </ListItem>,
-  );
-  fireEvent.click(screen.getByTestId("todo-list-delete-btn"));
-  expect(handleClick).toHaveBeenCalledTimes(1);
+const mockTodoItem = "buy milk";
+
+const handleDelete = jest.fn();
+
+const renderComponent = () => render(
+  <TodoListItem todo={mockTodoItem} deleteTodo={handleDelete}/>,
+);
+
+describe("TodoListItem", () => {
+  test("check render the todo item and fire delete event", () => {
+    const { getByTestId } = renderComponent();
+    const todoListItem = getByTestId("todo-list-item");
+    if (todoListItem) {
+      fireEvent.click(screen.getByTestId("todo-item-delete-btn"));
+      expect(handleDelete).toHaveBeenCalledTimes(1);
+    }
+  });
 });

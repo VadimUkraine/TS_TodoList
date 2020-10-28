@@ -17,18 +17,16 @@ export const TodoListItem: React.FC<IProps> = ({ todo, deleteTodo }) => {
   };
 
   return (
-      <>
-        <ListItem>
-          <ListItemText
-            primary={todo}
-          />
-          <ListItemSecondaryAction>
-            <IconButton edge="end" aria-label="delete" onClick={handleDelete}>
-              <DeleteIcon />
-            </IconButton>
-          </ListItemSecondaryAction>
-        </ListItem>
-      </>
+      <ListItem data-testid={"todo-list-item"}>
+        <ListItemText
+          primary={todo}
+        />
+        <ListItemSecondaryAction>
+          <IconButton edge="end" aria-label="delete" onClick={handleDelete} data-testid={"todo-item-delete-btn"}>
+            <DeleteIcon />
+          </IconButton>
+        </ListItemSecondaryAction>
+      </ListItem>
   );
 };
 
