@@ -1,7 +1,9 @@
 import { select, put, takeLatest } from "redux-saga/effects";
+import { v4 as uuidv4 } from 'uuid';
 import * as a from "./actions";
 import * as c from "./constants";
 import { saveTodoList, getTodoList } from "./utils";
+import { ITodo } from './interfaces';
 
 export const getTodoListSaga = function* () {
   try {
@@ -22,8 +24,19 @@ export const addTodoSaga = function* (action: ReturnType<typeof a.addTodoRequest
 
     if (action.payload.todo.trim().length) {
       const list = yield select((store) => store.todo.list);
-      yield put(a.addTodoSuccess(action.payload.todo.trim()));
-      saveTodoList(JSON.stringify([...list, action.payload.todo]));
+      const newTodo = {
+        id: uuidv4(),
+        text: action.payload.todo.trim(),
+        date: new Date().toLocaleString("ru", {
+          day: "numeric",
+          month: 'numeric',
+          year: 'numeric',
+          hour: "numeric",
+          minute: "numeric",
+        }),
+      };
+      yield put(a.addTodoSuccess(newTodo));
+      saveTodoList(JSON.stringify([...list, newTodo]));
     }
 
   } catch (err) {
@@ -34,10 +47,10 @@ export const addTodoSaga = function* (action: ReturnType<typeof a.addTodoRequest
 export const deleteTodoSaga = function* (action: ReturnType<typeof a.deleteTodoRequest>) {
   try {
 
-    if (action.payload.todo) {
+    if (action.payload.id) {
       const list = yield select((store) => store.todo.list);
-      yield put(a.deleteTodoSuccess(action.payload.todo));
-      saveTodoList(JSON.stringify(list.filter((todo: string) => todo !== action.payload.todo)));
+      yield put(a.deleteTodoSuccess(action.payload.id));
+      saveTodoList(JSON.stringify(list.filter((todo: ITodo) => todo.id !== action.payload.id)));
     }
 
   } catch (err) {

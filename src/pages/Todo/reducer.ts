@@ -1,8 +1,9 @@
 import { IActions } from "./actions";
 import * as c from "./constants";
+import { ITodo } from './interfaces';
 
 const initialState = {
-  list: [] as string[],
+  list: [] as ITodo[],
 };
 
 export type IReduxState = typeof initialState;
@@ -17,7 +18,7 @@ export function todoReducer(state = initialState, action: IActions): IReduxState
     case c.DELETE_TODO_SUCCESS:
       return {
         ...state,
-        list: state.list.filter((todo) => todo !== action.payload.todo),
+        list: state.list.filter((todo) => todo.id !== action.payload.id),
       };
     case c.ADD_TODO_SUCCESS:
       return {

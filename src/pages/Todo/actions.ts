@@ -1,4 +1,5 @@
 import * as c from "./constants";
+import { ITodo } from "./interfaces";
 
 export function getTodoListRequest() {
   return {
@@ -6,7 +7,7 @@ export function getTodoListRequest() {
   };
 }
 
-export function getTodoListSuccess(list: string[]) {
+export function getTodoListSuccess(list: ITodo[]) {
   return {
     type: c.GET_TODO_LIST_ITEMS_SUCCESS,
     payload: { list },
@@ -26,7 +27,7 @@ export function addTodoRequest(todo: string) {
   };
 }
 
-export function addTodoSuccess(todo: string) {
+export function addTodoSuccess(todo: ITodo) {
   return {
     type: c.ADD_TODO_SUCCESS,
     payload: { todo },
@@ -39,17 +40,17 @@ export function addTodoFailure() {
   };
 }
 
-export function deleteTodoRequest(todo: string) {
+export function deleteTodoRequest(id: string) {
   return {
     type: c.DELETE_TODO_REQUEST,
-    payload: { todo },
+    payload: { id },
   };
 }
 
-export function deleteTodoSuccess(todo: string) {
+export function deleteTodoSuccess(id: string) {
   return {
     type: c.DELETE_TODO_SUCCESS,
-    payload: { todo },
+    payload: { id },
   };
 }
 
