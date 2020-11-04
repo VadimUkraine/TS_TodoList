@@ -5,3 +5,5 @@ export const setDateTimeToString = (): string => (new Date().toLocaleString("ru"
   hour: "numeric",
   minute: "numeric",
 }));
+
+export default setDateTimeToString;

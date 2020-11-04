@@ -5,4 +5,3 @@ export const GET_TODO_LIST_ITEMS_FAILURE = "GET_TODO_LIST_ITEMS_FAILURE" as cons
 export const ADD_TODO_REQUEST = "ADD_TODO_REQUEST" as const;
 export const DELETE_TODO_REQUEST = "DELETE_TODO_REQUEST" as const;
 export const CHANGE_TODO_REQUEST = "CHANGE_TODO_REQUEST" as const;
-

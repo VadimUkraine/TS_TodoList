@@ -1,4 +1,6 @@
-import { call, select, put, takeLatest } from "redux-saga/effects";
+import {
+  call, select, put, takeLatest,
+} from "redux-saga/effects";
 import { v4 as uuidv4 } from 'uuid';
 import * as a from "./actions";
 import * as c from "./constants";
@@ -23,7 +25,7 @@ export const getTodoListSaga = function* () {
 export const addTodoSaga = function* (action: ReturnType<typeof a.addTodoRequest>) {
   try {
 
-    if (action.payload.todo.trim().length) {     
+    if (action.payload.todo.trim().length) {
       const newTodo = {
         id: uuidv4(),
         text: action.payload.todo.trim(),
