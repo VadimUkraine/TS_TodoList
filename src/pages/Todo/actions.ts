@@ -27,36 +27,10 @@ export function addTodoRequest(todo: string) {
   };
 }
 
-export function addTodoSuccess(todo: ITodo) {
-  return {
-    type: c.ADD_TODO_SUCCESS,
-    payload: { todo },
-  };
-}
-
-export function addTodoFailure() {
-  return {
-    type: c.ADD_TODO_FAILURE,
-  };
-}
-
 export function deleteTodoRequest(id: string) {
   return {
     type: c.DELETE_TODO_REQUEST,
     payload: { id },
-  };
-}
-
-export function deleteTodoSuccess(id: string) {
-  return {
-    type: c.DELETE_TODO_SUCCESS,
-    payload: { id },
-  };
-}
-
-export function deleteTodoFailure() {
-  return {
-    type: c.DELETE_TODO_FAILURE,
   };
 }
 
@@ -67,29 +41,10 @@ export function changeTodoRequest(id: string, text: string) {
   };
 }
 
-export function changeTodoSuccess(changedTodo: ITodo) {
-  return {
-    type: c.CHANGE_TODO_SUCCESS,
-    payload: { changedTodo },
-  };
-}
-
-export function changeTodoFailure() {
-  return {
-    type: c.CHANGE_TODO_FAILURE,
-  };
-}
-
 export type IActions =
   | ReturnType<typeof getTodoListRequest>
   | ReturnType<typeof getTodoListSuccess>
   | ReturnType<typeof getTodoListFailure>
   | ReturnType<typeof addTodoRequest>
-  | ReturnType<typeof addTodoSuccess>
-  | ReturnType<typeof addTodoFailure>
   | ReturnType<typeof deleteTodoRequest>
-  | ReturnType<typeof deleteTodoSuccess>
-  | ReturnType<typeof deleteTodoFailure>
-  | ReturnType<typeof changeTodoRequest>
-  | ReturnType<typeof changeTodoSuccess>
-  | ReturnType<typeof changeTodoFailure>;
+  | ReturnType<typeof changeTodoRequest>;
