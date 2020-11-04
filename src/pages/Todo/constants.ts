@@ -9,3 +9,7 @@ export const ADD_TODO_FAILURE = "ADD_TODO_FAILURE" as const;
 export const DELETE_TODO_REQUEST = "DELETE_TODO_REQUEST" as const;
 export const DELETE_TODO_SUCCESS = "DELETE_TODO_SUCCESS" as const;
 export const DELETE_TODO_FAILURE = "DELETE_TODO_FAILURE" as const;
+
+export const CHANGE_TODO_REQUEST = "CHANGE_TODO_REQUEST" as const;
+export const CHANGE_TODO_SUCCESS = "CHANGE_TODO_SUCCESS" as const;
+export const CHANGE_TODO_FAILURE = "CHANGE_TODO_FAILURE" as const;

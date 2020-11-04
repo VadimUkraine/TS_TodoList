@@ -25,6 +25,16 @@ export function todoReducer(state = initialState, action: IActions): IReduxState
         ...state,
         list: [...state.list, action.payload.todo],
       };
+    case c.CHANGE_TODO_SUCCESS:
+      return {
+        ...state,
+        list: state.list.map((todo: ITodo) => {
+          if (todo.id === action.payload.changedTodo.id) {
+            return action.payload.changedTodo;
+          }
+          return todo;
+        }),
+      };
     default:
       return state;
   }

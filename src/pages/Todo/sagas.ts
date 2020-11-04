@@ -2,7 +2,7 @@ import { select, put, takeLatest } from "redux-saga/effects";
 import { v4 as uuidv4 } from 'uuid';
 import * as a from "./actions";
 import * as c from "./constants";
-import { saveTodoList, getTodoList } from "./utils";
+import { saveTodoList, getTodoList, setDateTimeToString } from "./utils";
 import { ITodo } from './interfaces';
 
 export const getTodoListSaga = function* () {
@@ -27,13 +27,7 @@ export const addTodoSaga = function* (action: ReturnType<typeof a.addTodoRequest
       const newTodo = {
         id: uuidv4(),
         text: action.payload.todo.trim(),
-        date: new Date().toLocaleString("ru", {
-          day: "numeric",
-          month: 'numeric',
-          year: 'numeric',
-          hour: "numeric",
-          minute: "numeric",
-        }),
+        date: setDateTimeToString(),
       };
       yield put(a.addTodoSuccess(newTodo));
       saveTodoList(JSON.stringify([...list, newTodo]));
@@ -58,8 +52,33 @@ export const deleteTodoSaga = function* (action: ReturnType<typeof a.deleteTodoR
   }
 };
 
+export const changeTodoSaga = function* (action: ReturnType<typeof a.changeTodoRequest>) {
+  try {
+
+    const list = yield select((store) => store.todo.list);
+    const changedTodo = list.find((todo: ITodo) => todo.id === action.payload.id);
+
+    if (changedTodo) {
+      changedTodo.text = action.payload.text;
+      changedTodo.date = setDateTimeToString();
+      yield put(a.changeTodoSuccess(changedTodo));
+      saveTodoList(JSON.stringify(list.map((todo: ITodo) => {
+        if (todo.id === action.payload.id) {
+          return changedTodo;
+        }
+        return todo;
+      })));
+    }
+
+  } catch (err) {
+    console.warn(err);
+  }
+};
+
 export function* todoSagaWatcher() {
   yield takeLatest(c.GET_TODO_LIST_ITEMS_REQUEST, getTodoListSaga);
   yield takeLatest(c.ADD_TODO_REQUEST, addTodoSaga);
   yield takeLatest(c.DELETE_TODO_REQUEST, deleteTodoSaga);
+  yield takeLatest(c.CHANGE_TODO_REQUEST, changeTodoSaga);
+
 }

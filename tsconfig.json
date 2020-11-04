@@ -10,7 +10,8 @@
     "declaration": true,                
     "sourceMap": true,                        
     "outDir": "./public",                      
-    "strict": true,                           
+    "strict": true, 
+    "strictNullChecks": false,                          
     "noImplicitAny": false,
     "moduleResolution": "node",               
     "typeRoots": [                            

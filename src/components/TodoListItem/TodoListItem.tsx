@@ -13,13 +13,14 @@ interface IProps {
   deleteTodo: (todo: string) => void;
   editID: string;
   setEditId: (id: string) => void;
+  changeTodo: (id: string, todo: string) => void;
 }
 
 const useStyles = makeStyles(() => createStyles({
   todoItemContent: {
     display: "flex",
     flexDirection: "column",
-    minWidth: "95%",
+    minWidth: "100%",
     height: "45px",
   },
   todoButtonsWrap: {
@@ -51,22 +52,20 @@ const useStyles = makeStyles(() => createStyles({
 }));
 
 export const TodoListItem: React.FC<IProps> = ({
-  todo, deleteTodo, editID, setEditId,
+  todo, deleteTodo, editID, setEditId, changeTodo,
 }) => {
 
-  const [text, setText] = useState('');
-  const refEditInput = useRef(null);
+  const [inputValue, setInputValue] = useState('');
+  const refInput = useRef(null);
 
   useEffect(() => {
-    if (editID === todo.id) {
-      if (refEditInput.current !== null) {
-        refEditInput.current.focus();
-      }
+    if (editID === todo.id && refInput.current) {
+      refInput.current.focus();
     }
   }, [editID]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
+    setInputValue(event.target.value);
   };
 
   const handleDelete = () => {
@@ -74,12 +73,18 @@ export const TodoListItem: React.FC<IProps> = ({
   };
 
   const handleEdit = () => {
-    if (editID !== todo.id) {
-      setEditId(todo.id);
-      setText(todo.text);
-    } else {
-      setEditId("");
-    }
+    setEditId(todo.id);
+    setInputValue(todo.text);
+  };
+
+  const handleBlur = () => {
+    setEditId("");
+  };
+
+  const handleKeyPress = (event: any) => {
+    if (event.key !== 'Enter') return;
+    changeTodo(todo.id, inputValue);
+    handleBlur();
   };
 
   const classes = useStyles();
@@ -97,15 +102,16 @@ export const TodoListItem: React.FC<IProps> = ({
             }}
           />}
           {editID === todo.id && <TextField
-            id="todo-text"
-            value={text}
+            value={inputValue}
             onChange={handleChange}
+            onBlur={handleBlur}
+            onKeyPress={handleKeyPress}
             inputProps={{
               "aria-label": "todo-item-edit-input",
               className: classes.editInputStyles,
-              ref: refEditInput,
+              ref: refInput,
             }}
-          />}
+        />}
         <Typography className={classes.dateStyles} variant="caption" display="block" gutterBottom>
           {todo.date}
         </Typography>
@@ -114,7 +120,7 @@ export const TodoListItem: React.FC<IProps> = ({
           className={classes.todoButtonsWrap}
         >
           <Button size="small" variant="contained" color="primary" onClick={handleEdit}>
-          {editID === todo.id ? "Confirm" : "Edit"}
+            Edit
           </Button>
           <Button className={classes.btnDelete} size="small" variant="contained" color="secondary" onClick={handleDelete}>
             Delete

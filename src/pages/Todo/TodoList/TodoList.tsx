@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import List from "@material-ui/core/List";
 import { RootState } from "../../../rootReducer";
-import { deleteTodoRequest } from "../actions";
+import { deleteTodoRequest, changeTodoRequest } from "../actions";
 import TodoListItem from "../../../components/TodoListItem";
 import { ITodo } from '../interfaces';
 
@@ -21,6 +21,10 @@ export const TodoList: React.FC = () => {
     setEditId(id);
   };
 
+  const handleChangeTodo = (id: string, text: string) => {
+    dispatch(changeTodoRequest(id, text));
+  };
+
   return (
     <List data-testid={"todo-list-component"}>
       {list.map((todo: ITodo) => (
@@ -30,6 +34,7 @@ export const TodoList: React.FC = () => {
           deleteTodo={handleDelete}
           editID={editID}
           setEditId={handleSetEditId}
+          changeTodo={handleChangeTodo}
         />
       ))}
     </List>
