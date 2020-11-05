@@ -4,7 +4,7 @@ class TodoService {
 
   getList = async () => {
     try {
-      const url = "/";
+      const url = "/api/todos";
       const response = await axios.get(url);
       return response.data;
     } catch (err) {
@@ -14,7 +14,7 @@ class TodoService {
 
   addTodo = async (payload: { id: string, text: string, date: string }) => {
     try {
-      const url = "/";
+      const url = "/api/todos";
       const response = await axios.post(url, payload);
       return response.data;
     } catch (err) {
@@ -24,7 +24,7 @@ class TodoService {
 
   deleteTodo = async (id: string) => {
     try {
-      const url = "/";
+      const url = "/api/todos";
       const response = await axios.delete(url, { data: { id } });
       return response.data;
     } catch (err) {
@@ -34,7 +34,7 @@ class TodoService {
 
   changeTodo = async (payload: { id: string, text: string, date: string }) => {
     try {
-      const url = "/";
+      const url = "/api/todos";
       const response = await axios.put(url, payload);
       return response.data;
     } catch (err) {

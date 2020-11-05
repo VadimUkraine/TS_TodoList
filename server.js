@@ -1,79 +1,93 @@
-const express = require('express')
-const app = express()
-const todos = require('./server_data/todos');
+const path = require("path");
+const express = require("express");
+const todos = require("./server_data/todos");
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true}));
-app.use((req, res, next) =>{
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader("Access-Control-Allow-Methods", "GET,DELETE,POST,PUT");
   res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
   next();
-})
+});
+app.use(express.static(path.join(__dirname, "./public")));
 
 const PORT = process.env.PORT || 8080;
 
-async function start(){
+async function start() {
 
-  try{
-    app.listen(PORT, () =>{
-      console.log(`Server is running on port ${PORT}`)
-    })
-  }catch(e){
-    console.warn(e)
+  try {
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  } catch (e) {
+    console.warn(e);
   }
 }
 
-start()
-
+start();
 
 app.get('/', (req, res) => {
-  try{
-    res.status(200).json(todos);
-  }catch (e){
-    console.log(e)
+  try {
+    res.status(200);
+    res.sendFile(path.join(__dirname, './public', 'index.html'));
+  } catch (e) {
+    console.log(e);
     res.status(500).json({
-      message: 'Server error with getting todo list'
-    })
-  }  
+      message: 'Server error',
+    });
+  }
 });
 
-app.post('/', async (req, res) => {
-  try{  
-    await todos.unshift(req.body);
-    res.status(201).json(todos)
-  }catch (e){
-    console.log(e)
+app.get("/api/todos", (req, res) => {
+  try {
+    res.status(200).json(todos);
+  } catch (e) {
+    console.log(e);
     res.status(500).json({
-      message: 'Server error with adding todo'
-    })
-  }  
+      message: 'Server error with getting todo list',
+    });
+  }
 });
 
-app.delete('/', async (req, res) =>{
-  try{
-    const index = todos.findIndex(todo => (todo.id === req.body.id));
-    await todos.splice(index,1);
-    res.status(200).json(todos);
-  }catch (e){
-    console.log(e)
+app.post("/api/todos", async (req, res) => {
+  try {
+    await todos.unshift(req.body);
+    res.status(201).json(todos);
+  } catch (e) {
+    console.log(e);
     res.status(500).json({
-      message: 'Server error with deleting todo'
-    })
-  }  
-})
+      message: 'Server error with adding todo',
+    });
+  }
+});
 
-app.put('/', async (req, res) =>{
-  try{    
-    const index = todos.findIndex(todo => (todo.id === req.body.id));
-    await todos.splice(index,1);
+app.delete("/api/todos", async (req, res) => {
+  try {
+    const index = todos.findIndex((todo) => (todo.id === req.body.id));
+    await todos.splice(index, 1);
+    res.status(200).json(todos);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      message: 'Server error with deleting todo',
+    });
+  }
+});
+
+app.put("/api/todos", async (req, res) => {
+  try {
+    const index = todos.findIndex((todo) => (todo.id === req.body.id));
+    await todos.splice(index, 1);
     await todos.unshift(req.body);
     res.status(200).json(todos);
-  }catch (e){
-    console.log(e)
+  } catch (e) {
+    console.log(e);
     res.status(500).json({
-      message: 'Server error with changing todo'
-    })
-  }  
-})
+      message: 'Server error with changing todo',
+    });
+  }
+});
