@@ -8,7 +8,9 @@
     "no-use-before-define": 0,
     "react/prop-types": 0,
     "padded-blocks": 0,
-    "@typescript-eslint/no-var-requires": 0
+    "@typescript-eslint/no-var-requires": "warn",
+    "no-undef": "warn",
+    "no-restricted-globals": "warn"
   },
   "settings": {
     "react": {
