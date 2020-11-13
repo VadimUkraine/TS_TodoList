@@ -1,8 +1,8 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
-import App from "../App";
-import configureStore from "../store";
+import App from "./App";
+import configureStore from "./store";
 
 const store = configureStore();
 
@@ -16,10 +16,6 @@ describe("App", () => {
   it("check render Todo root component in App", () => {
     const { getByTestId } = renderComponent();
     const todoRootComponent = getByTestId("todo-root-component");
-    if (todoRootComponent) {
-      expect(todoRootComponent).toBeDefined();
-    } else {
-      expect(todoRootComponent).not.toBeDefined();
-    }
+    expect(todoRootComponent).toBeDefined();
   });
 });

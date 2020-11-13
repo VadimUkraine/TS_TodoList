@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from "@material-ui/core/TextField";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-import { ITodo } from '../../pages/Todo/interfaces';
+import { ITodo } from '../../../../types';
 
 interface IProps {
   todo: ITodo;
@@ -21,18 +21,18 @@ const useStyles = makeStyles(() => createStyles({
     display: "flex",
     flexDirection: "column",
     minWidth: "100%",
-    height: "45px",
+    height: "2.8125rem",
   },
   todoButtonsWrap: {
-    right: "0px",
+    right: "0rem",
   },
   btnDelete: {
-    marginLeft: "5px",
+    marginLeft: "0.3125rem",
   },
   todoItem: {
-    paddingLeft: "0px",
-    paddingRight: "150px",
-    paddingTop: "15px",
+    paddingLeft: "0rem",
+    paddingRight: "9.375rem",
+    paddingTop: "0.9375rem",
   },
   textStyles: {
     width: "100%",
@@ -47,7 +47,7 @@ const useStyles = makeStyles(() => createStyles({
     opacity: 0.5,
   },
   editInputStyles: {
-    padding: "2px 0px 3px 0px",
+    padding: "0.125rem 0rem 0.1875rem 0rem",
   },
 }));
 
@@ -62,7 +62,7 @@ export const TodoListItem: React.FC<IProps> = ({
     if (editID === todo.id && refInput.current) {
       refInput.current.focus();
     }
-  }, [editID]);
+  }, [editID, todo]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);

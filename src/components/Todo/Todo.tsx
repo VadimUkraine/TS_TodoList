@@ -5,9 +5,9 @@ import TodoList from "./TodoList";
 
 const useStyles = makeStyles(() => createStyles({
   todoStyles: {
-    padding: "10px 5px",
+    padding: "0.625rem 0.3125rem",
     margin: "0 auto",
-    maxWidth: "500px",
+    maxWidth: "31.25rem",
   },
 }));
 

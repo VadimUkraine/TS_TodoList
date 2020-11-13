@@ -2,11 +2,16 @@ import {
   call, select, put, takeLatest,
 } from "redux-saga/effects";
 import { v4 as uuidv4 } from 'uuid';
-import * as a from "./actions";
-import * as c from "./constants";
-import { setDateTimeToString } from "./utils";
-import { ITodo } from './interfaces';
-import TodoService from './service';
+import * as a from "../actions/todo";
+import {
+  GET_TODO_LIST_ITEMS_REQUEST,
+  ADD_TODO_REQUEST,
+  DELETE_TODO_REQUEST,
+  CHANGE_TODO_REQUEST,
+} from "../constants/todo";
+import setDateTimeToString from "../utils";
+import { ITodo } from '../../types';
+import TodoService from '../api';
 
 export const getTodoListSaga = function* () {
   try {
@@ -72,8 +77,8 @@ export const changeTodoSaga = function* (action: ReturnType<typeof a.changeTodoR
 };
 
 export function* todoSagaWatcher() {
-  yield takeLatest(c.GET_TODO_LIST_ITEMS_REQUEST, getTodoListSaga);
-  yield takeLatest(c.ADD_TODO_REQUEST, addTodoSaga);
-  yield takeLatest(c.DELETE_TODO_REQUEST, deleteTodoSaga);
-  yield takeLatest(c.CHANGE_TODO_REQUEST, changeTodoSaga);
+  yield takeLatest(GET_TODO_LIST_ITEMS_REQUEST, getTodoListSaga);
+  yield takeLatest(ADD_TODO_REQUEST, addTodoSaga);
+  yield takeLatest(DELETE_TODO_REQUEST, deleteTodoSaga);
+  yield takeLatest(CHANGE_TODO_REQUEST, changeTodoSaga);
 }

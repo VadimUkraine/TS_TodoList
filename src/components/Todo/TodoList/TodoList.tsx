@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import List from "@material-ui/core/List";
-import { RootState } from "../../../rootReducer";
-import { deleteTodoRequest, changeTodoRequest } from "../actions";
-import TodoListItem from "../../../components/TodoListItem";
-import { ITodo } from '../interfaces';
+import { RootState } from "../../../redux/reducers/rootReducer";
+import { deleteTodoRequest, changeTodoRequest } from "../../../redux/actions/todo";
+import TodoListItem from "./TodoListItem";
+import { ITodo } from '../../../types';
 
 export const TodoList: React.FC = () => {
 

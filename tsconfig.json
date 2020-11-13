@@ -19,7 +19,8 @@
     ],
     "esModuleInterop": true,       
     "experimentalDecorators": true,        
-    "emitDecoratorMetadata": true           
+    "emitDecoratorMetadata": true,
+    "preserveConstEnums": true        
   },
   "exclude": [
     "node_modules",

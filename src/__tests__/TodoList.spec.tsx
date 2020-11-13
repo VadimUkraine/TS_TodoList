@@ -1,8 +1,8 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { render, screen } from "@testing-library/react";
-import TodoList from "../pages/Todo/TodoList";
-import configureStore from "../store";
+import TodoList from ".";
+import configureStore from "../../../store";
 
 const mockStore = {
   todo: {
@@ -12,19 +12,14 @@ const mockStore = {
 
 const store = configureStore(mockStore);
 
-const renderComponent = () => render(
-  <Provider store={store}>
-    <TodoList />
-  </Provider>,
-);
-
 describe("TodoList", () => {
   test("check render the list of todo items", async () => {
-    const { getByTestId } = renderComponent();
-    const todoListComponent = getByTestId("todo-list-component");
-    if (todoListComponent) {
-      const items = await screen.findAllByRole("listitem");
-      expect(items).toHaveLength(2);
-    }
+    render(
+      <Provider store={store}>
+        <TodoList />
+      </Provider>,
+    );
+    const items = await screen.findAllByRole("listitem");
+    expect(items).toHaveLength(2);
   });
 });

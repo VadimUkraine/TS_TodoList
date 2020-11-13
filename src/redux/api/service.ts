@@ -1,4 +1,4 @@
-import axios from "../../global/api";
+import axios from "./instance";
 
 class TodoService {
 

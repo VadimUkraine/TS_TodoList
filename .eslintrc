@@ -26,7 +26,8 @@
     "plugin:react/recommended",
     "airbnb-base",
     "plugin:react-hooks/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jest/recommended"
   ]
 }
 

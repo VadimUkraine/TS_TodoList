@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
-import { addTodoRequest } from "../actions";
+import { addTodoRequest } from "../../../redux/actions/todo";
 
 const useStyles = makeStyles(() => createStyles({
   formStyles: {
@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => createStyles({
   },
   textFieldStyles: {
     width: "80%",
-    marginRight: "10px",
+    marginRight: "0.625rem",
   },
 }));
 

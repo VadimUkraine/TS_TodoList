@@ -1,42 +1,49 @@
-import * as c from "./constants";
-import { ITodo } from "./interfaces";
+import {
+  GET_TODO_LIST_ITEMS_REQUEST,
+  GET_TODO_LIST_ITEMS_SUCCESS,
+  GET_TODO_LIST_ITEMS_FAILURE,
+  ADD_TODO_REQUEST,
+  DELETE_TODO_REQUEST,
+  CHANGE_TODO_REQUEST,
+} from "../constants/todo";
+import { ITodo } from "../../types";
 
 export function getTodoListRequest() {
   return {
-    type: c.GET_TODO_LIST_ITEMS_REQUEST,
+    type: GET_TODO_LIST_ITEMS_REQUEST,
   };
 }
 
 export function getTodoListSuccess(list: ITodo[]) {
   return {
-    type: c.GET_TODO_LIST_ITEMS_SUCCESS,
+    type: GET_TODO_LIST_ITEMS_SUCCESS,
     payload: { list },
   };
 }
 
 export function getTodoListFailure() {
   return {
-    type: c.GET_TODO_LIST_ITEMS_FAILURE,
+    type: GET_TODO_LIST_ITEMS_FAILURE,
   };
 }
 
 export function addTodoRequest(todo: string) {
   return {
-    type: c.ADD_TODO_REQUEST,
+    type: ADD_TODO_REQUEST,
     payload: { todo },
   };
 }
 
 export function deleteTodoRequest(id: string) {
   return {
-    type: c.DELETE_TODO_REQUEST,
+    type: DELETE_TODO_REQUEST,
     payload: { id },
   };
 }
 
 export function changeTodoRequest(id: string, text: string) {
   return {
-    type: c.CHANGE_TODO_REQUEST,
+    type: CHANGE_TODO_REQUEST,
     payload: { id, text },
   };
 }
