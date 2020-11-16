@@ -83,7 +83,9 @@ export const TodoListItem: React.FC<IProps> = ({
 
   const handleKeyPress = (event: any) => {
     if (event.key !== 'Enter') return;
-    changeTodo(todo.id, inputValue);
+    if (inputValue !== todo.text) {
+      changeTodo(todo.id, inputValue);
+    }
     handleBlur();
   };
 

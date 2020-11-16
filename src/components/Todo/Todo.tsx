@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { useDispatch } from "react-redux";
+import { getTodoListRequest } from "../../redux/actions/todo";
 import FormAddTodo from "./FormAddTodo";
 import TodoList from "./TodoList";
 
@@ -12,6 +14,12 @@ const useStyles = makeStyles(() => createStyles({
 }));
 
 export const Todo: React.FC = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTodoListRequest());
+  }, [dispatch]);
 
   const classes = useStyles();
 

@@ -1,21 +1,20 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { render } from "@testing-library/react";
-import App from "./App";
-import configureStore from "./store";
+import React from 'react';
+import { Provider } from 'react-redux';
+import '@testing-library/jest-dom/extend-expect';
+import { render, screen, cleanup } from '@testing-library/react';
+import App from '../App';
+import configureStore from '../redux/store';
 
 const store = configureStore();
 
-const renderComponent = () => render(
+beforeEach(() => render(
   <Provider store={store}>
-    <App />
+     <App />
   </Provider>,
-);
+));
 
-describe("App", () => {
-  it("check render Todo root component in App", () => {
-    const { getByTestId } = renderComponent();
-    const todoRootComponent = getByTestId("todo-root-component");
-    expect(todoRootComponent).toBeDefined();
-  });
+afterEach(cleanup);
+
+test('it renders component', () => {
+  expect(screen.getByRole('button', { name: 'Add Todo' })).toBeInTheDocument();
 });

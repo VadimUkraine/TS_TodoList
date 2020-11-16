@@ -1,31 +1,27 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { render, fireEvent, screen } from "@testing-library/react";
-import Todo from ".";
-import configureStore from "../../store";
+import React from 'react';
+import { Provider } from 'react-redux';
+import '@testing-library/jest-dom/extend-expect';
+import { render, screen, cleanup } from '@testing-library/react';
+import Todo from '../components/Todo';
+import configureStore from '../redux/store';
+import TodoService from '../redux/api';
 
 const store = configureStore();
+jest.mock('../redux/api/service.ts', () => ({ getList: jest.fn() }));
 
-const renderComponent = () => render(
+beforeEach(() => render(
   <Provider store={store}>
     <Todo/>
   </Provider>,
-);
+));
 
-describe("Todo", () => {
-  test("check render children of Todo root component and execute the whole logic in one pass", () => {
-    const { getByTestId, getByLabelText } = renderComponent();
-    const todoFormInput = getByLabelText("todo-form-input") as HTMLInputElement;
-    const todoFormAddButton = getByTestId("todo-form-add-button");
-    const todoListComponent = getByTestId("todo-list-component");
-    fireEvent.change(todoFormInput, { target: { value: "buy milk" } });
-    expect(todoFormInput.value).toBe("buy milk");
-    fireEvent.click(todoFormAddButton);
-    expect(todoFormInput.value).toBe("");
-    const todoListItem = todoListComponent.querySelector("li") as HTMLLIElement;
-    expect(todoListItem.textContent).toBe("buy milk");
-    const listItemDeleteBtn = screen.getByTestId("todo-item-delete-btn") as HTMLButtonElement;
-    fireEvent.click(listItemDeleteBtn);
-    expect(todoListComponent.querySelector("li")).toBeNull();
-  });
+afterEach(cleanup);
+
+test('it renders component', () => {
+  expect(screen.getByRole('textbox', { name: 'todo-form-input' })).toBeInTheDocument();
+});
+
+test('it checks request to get items list from server', () => {
+  const { getList } = TodoService;
+  expect(getList).toBeCalled();
 });

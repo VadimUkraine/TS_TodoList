@@ -1,16 +1,6 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import Todo from "./components/Todo";
-import { getTodoListRequest } from "./redux/actions/todo";
 
-const App = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getTodoListRequest());
-  }, [dispatch]);
-
-  return (<Todo />);
-};
+const App = () => (<Todo />);
 
 export default App;
