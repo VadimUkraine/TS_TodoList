@@ -8,7 +8,7 @@
     "test:watch": "jest --watch",
     "coverage": "jest --coverage",
     "build": "concurrently \"npm run prod-server\" \"npm run prod\"",
-    "prod-server": "node -r ts-node/register np./server/index.ts",
+    "prod-server": "node -r ts-node/register ./server/index.ts",
     "server": "nodemon --watch ./server -r ts-node/register ./server/index.ts",
     "prod": "cross-env NODE_ENV=production webpack --mode production",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
