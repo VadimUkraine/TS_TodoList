@@ -14,7 +14,8 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run dev\"",
     "stats": "webpack --json > stats.json && webpack-bundle-analyzer stats.json",
-    "eslint": "node_modules/.bin/eslint src/"
+    "eslint": "eslint ./", 
+    "eslint:fix": "eslint ./ --fix"
   },
   "browserslist": "> 0.25%, not dead",
   "keywords": [
@@ -95,7 +96,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js}": [
-      "node_modules/.bin/eslint --max-warnings=-1"
+      "eslint --max-warnings=-1"
     ]
   },
   "husky": {
