@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
+import { Helmet } from 'react-helmet';
 import { getTodoListRequest } from "../../redux/actions/todo";
 import FormAddTodo from "./FormAddTodo";
 import TodoList from "./TodoList";
@@ -25,6 +26,12 @@ export const Todo: React.FC = () => {
 
   return (
     <div className={classes.todoStyles} data-testid={"todo-root-component"}>
+      <Helmet>
+        <meta name="description" content="The PWA Todos"/>
+        <meta name="theme-color" content="#F4F4F4"/>
+        <link rel="canonical" href="http://localhost:8080" />
+        <title>TS-TodoList</title>
+      </Helmet>
       <FormAddTodo/>
       <TodoList/>
     </div>

@@ -6,7 +6,7 @@ import {
   DELETE_TODO_REQUEST,
   CHANGE_TODO_REQUEST,
 } from "../constants/todo";
-import { ITodo } from "../../types";
+import { Todo } from "../../types";
 
 export function getTodoListRequest() {
   return {
@@ -14,7 +14,7 @@ export function getTodoListRequest() {
   };
 }
 
-export function getTodoListSuccess(list: ITodo[]) {
+export function getTodoListSuccess(list: Todo[]) {
   return {
     type: GET_TODO_LIST_ITEMS_SUCCESS,
     payload: { list },
@@ -48,7 +48,7 @@ export function changeTodoRequest(id: string, text: string) {
   };
 }
 
-export type IActions =
+export type Actions =
   | ReturnType<typeof getTodoListRequest>
   | ReturnType<typeof getTodoListSuccess>
   | ReturnType<typeof getTodoListFailure>

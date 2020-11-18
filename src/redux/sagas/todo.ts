@@ -2,7 +2,12 @@ import {
   call, select, put, takeLatest,
 } from "redux-saga/effects";
 import { v4 as uuidv4 } from 'uuid';
-import * as a from "../actions/todo";
+import {
+  getTodoListSuccess,
+  addTodoRequest,
+  deleteTodoRequest,
+  changeTodoRequest,
+} from "../actions/todo";
 import {
   GET_TODO_LIST_ITEMS_REQUEST,
   ADD_TODO_REQUEST,
@@ -10,7 +15,7 @@ import {
   CHANGE_TODO_REQUEST,
 } from "../constants/todo";
 import setDateTimeToString from "../utils";
-import { ITodo } from '../../types';
+import { Todo } from '../../types';
 import TodoService from '../api';
 
 export const getTodoListSaga = function* () {
@@ -19,7 +24,7 @@ export const getTodoListSaga = function* () {
     const list = yield call(TodoService.getList);
 
     if (list) {
-      yield put(a.getTodoListSuccess(list));
+      yield put(getTodoListSuccess(list));
     }
 
   } catch (err) {
@@ -27,7 +32,7 @@ export const getTodoListSaga = function* () {
   }
 };
 
-export const addTodoSaga = function* (action: ReturnType<typeof a.addTodoRequest>) {
+export const addTodoSaga = function* (action: ReturnType<typeof addTodoRequest>) {
   try {
 
     if (action.payload.todo.trim().length) {
@@ -37,7 +42,7 @@ export const addTodoSaga = function* (action: ReturnType<typeof a.addTodoRequest
         date: setDateTimeToString(),
       };
       const list = yield call(TodoService.addTodo, newTodo);
-      yield put(a.getTodoListSuccess(list));
+      yield put(getTodoListSuccess(list));
     }
 
   } catch (err) {
@@ -45,12 +50,12 @@ export const addTodoSaga = function* (action: ReturnType<typeof a.addTodoRequest
   }
 };
 
-export const deleteTodoSaga = function* (action: ReturnType<typeof a.deleteTodoRequest>) {
+export const deleteTodoSaga = function* (action: ReturnType<typeof deleteTodoRequest>) {
   try {
 
     if (action.payload.id) {
       const list = yield call(TodoService.deleteTodo, action.payload.id);
-      yield put(a.getTodoListSuccess(list));
+      yield put(getTodoListSuccess(list));
     }
 
   } catch (err) {
@@ -58,17 +63,17 @@ export const deleteTodoSaga = function* (action: ReturnType<typeof a.deleteTodoR
   }
 };
 
-export const changeTodoSaga = function* (action: ReturnType<typeof a.changeTodoRequest>) {
+export const changeTodoSaga = function* (action: ReturnType<typeof changeTodoRequest>) {
   try {
 
     const list = yield select((store) => store.todo.list);
-    const changedTodo = list.find((todo: ITodo) => todo.id === action.payload.id);
+    const changedTodo = list.find((todo: Todo) => todo.id === action.payload.id);
 
     if (changedTodo) {
       changedTodo.text = action.payload.text;
       changedTodo.date = setDateTimeToString();
       const updatedList = yield call(TodoService.changeTodo, changedTodo);
-      yield put(a.getTodoListSuccess(updatedList));
+      yield put(getTodoListSuccess(updatedList));
     }
 
   } catch (err) {

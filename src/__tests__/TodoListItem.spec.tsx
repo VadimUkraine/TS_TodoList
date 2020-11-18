@@ -1,5 +1,6 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
+import renderer from 'react-test-renderer';
 import {
   render, screen, fireEvent, cleanup,
 } from '@testing-library/react';
@@ -51,4 +52,17 @@ test('it checks click button edit', () => {
 test('it checks click delete button', () => {
   fireEvent.click(screen.getByRole('button', { name: 'Delete' }));
   expect(handleDelete).toBeCalled();
+});
+
+test('it renders correctly todoListItem', () => {
+  const tree = renderer
+    .create(<TodoListItem
+      todo={mockTodoItem}
+      deleteTodo={handleDelete}
+      editID={mockTodoItem.id}
+      setEditId={handleSetEditId}
+      changeTodo={handleChangeTodo}
+    />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });

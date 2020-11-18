@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it renders correctly todoList 1`] = `
+<ul
+  className="MuiList-root MuiList-padding"
+  data-testid="todo-list-component"
+>
+  <li
+    className="MuiListItem-container"
+  >
+    <div
+      className="MuiListItem-root makeStyles-todoItem-11 MuiListItem-gutters MuiListItem-secondaryAction"
+      data-testid="todo-list-item"
+      disabled={false}
+    >
+      <div
+        className="makeStyles-todoItemContent-8"
+      >
+        <div
+          className="MuiListItemText-root"
+        >
+          <span
+            className="MuiTypography-root MuiListItemText-primary makeStyles-textStyles-12 MuiTypography-body1 MuiTypography-displayBlock"
+          >
+            buy beer
+          </span>
+        </div>
+        <span
+          className="MuiTypography-root makeStyles-dateStyles-13 MuiTypography-caption MuiTypography-gutterBottom MuiTypography-displayBlock"
+        >
+          04.11.2020, 17:47
+        </span>
+      </div>
+    </div>
+    <div
+      className="MuiListItemSecondaryAction-root makeStyles-todoButtonsWrap-9"
+    >
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          Edit
+        </span>
+      </button>
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-btnDelete-10 MuiButton-containedSecondary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          Delete
+        </span>
+      </button>
+    </div>
+  </li>
+  <li
+    className="MuiListItem-container"
+  >
+    <div
+      className="MuiListItem-root makeStyles-todoItem-11 MuiListItem-gutters MuiListItem-secondaryAction"
+      data-testid="todo-list-item"
+      disabled={false}
+    >
+      <div
+        className="makeStyles-todoItemContent-8"
+      >
+        <div
+          className="MuiListItemText-root"
+        >
+          <span
+            className="MuiTypography-root MuiListItemText-primary makeStyles-textStyles-12 MuiTypography-body1 MuiTypography-displayBlock"
+          >
+            buy bread
+          </span>
+        </div>
+        <span
+          className="MuiTypography-root makeStyles-dateStyles-13 MuiTypography-caption MuiTypography-gutterBottom MuiTypography-displayBlock"
+        >
+          04.11.2020, 13:30
+        </span>
+      </div>
+    </div>
+    <div
+      className="MuiListItemSecondaryAction-root makeStyles-todoButtonsWrap-9"
+    >
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          Edit
+        </span>
+      </button>
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-btnDelete-10 MuiButton-containedSecondary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          Delete
+        </span>
+      </button>
+    </div>
+  </li>
+</ul>
+`;

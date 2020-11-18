@@ -1,14 +1,14 @@
-import { IActions } from "../actions/todo";
+import { Actions } from "../actions/todo";
 import { GET_TODO_LIST_ITEMS_SUCCESS } from "../constants/todo";
-import { ITodo } from '../../types';
+import { Todo } from '../../types';
 
 const initialState = {
-  list: [] as ITodo[],
+  list: [] as Todo[],
 };
 
 export type IReduxState = typeof initialState;
 
-export function todoReducer(state = initialState, action: IActions): IReduxState {
+export function todoReducer(state = initialState, action: Actions): IReduxState {
   switch (action.type) {
     case GET_TODO_LIST_ITEMS_SUCCESS:
       return {

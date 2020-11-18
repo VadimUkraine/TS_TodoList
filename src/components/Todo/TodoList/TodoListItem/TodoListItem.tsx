@@ -6,10 +6,10 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from "@material-ui/core/TextField";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-import { ITodo } from '../../../../types';
+import { Todo } from '../../../../types';
 
-interface IProps {
-  todo: ITodo;
+type Props = {
+  todo: Todo;
   deleteTodo: (todo: string) => void;
   editID: string;
   setEditId: (id: string) => void;
@@ -51,7 +51,7 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-export const TodoListItem: React.FC<IProps> = ({
+export const TodoListItem: React.FC<Props> = ({
   todo, deleteTodo, editID, setEditId, changeTodo,
 }) => {
 

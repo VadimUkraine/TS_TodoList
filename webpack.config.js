@@ -1,11 +1,9 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const TerserWebpackPlugin = require("terser-webpack-plugin");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const Manifest = require("webpack-manifest-plugin");
-const ServiceWorkerWebpackPlugin = require("serviceworker-webpack-plugin");
+const { merge } = require("webpack-merge");
+const webpackConfigDev = require("./webpack/webpack.config.dev");
+const webpackConfigProd = require("./webpack/webpack.config.prod");
 
 const manifestOptions = {
   seed: {
@@ -39,77 +37,30 @@ const manifestOptions = {
   },
 };
 
-const isDev = process.env.NODE_ENV === "development";
-
-const optimization = () => {
-  const config = {
-    splitChunks: {
-      chunks: 'all',
-    },
-  };
-
-  if (!isDev) {
-    config.minimizer = [
-      new TerserWebpackPlugin(),
-    ];
-  }
-
-  return config;
-};
-
-const filename = (ext) => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
-
-const plugins = () => {
-  const base = [
-    new ServiceWorkerWebpackPlugin({
-      entry: path.join(__dirname, "src/sw.js"),
-      filename: "sw.js",
-      excludes: ["**/.*", "**/*.map", "*.html"],
-    }),
-    new Manifest(manifestOptions),
-    new HTMLWebpackPlugin({
-      template: "./index.html",
-      minify: {
-        collapseWhitespace: !isDev,
-      },
-    }),
-    new CleanWebpackPlugin(),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, "src/global/img/"),
-          to: path.resolve(__dirname, "public/images"),
-        },
-      ],
-    }),
-  ];
-  if (!isDev) {
-    base.push(new BundleAnalyzerPlugin());
-  }
-  return base;
-};
-
-module.exports = {
+const webpackConfigCommon = {
   context: path.resolve(__dirname, "src"),
-  mode: "development",
   entry: "./index.tsx",
   output: {
-    filename: filename("js"),
+    filename: `[name].js`,
     path: path.resolve(__dirname, "public"),
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
-    alias: {
-      "@": path.resolve(__dirname, "src"),
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
     },
   },
-  optimization: optimization(),
-  devServer: {
-    port: 4200,
-    hot: isDev,
-  },
-  devtool: isDev ? "source-map" : '',
-  plugins: plugins(),
+  plugins: [
+    new Manifest(manifestOptions),
+    new HTMLWebpackPlugin({
+      template: "./index.html",
+      minify: {
+        collapseWhitespace: false,
+      },
+    }),
+  ],
   module: {
     rules: [
       {
@@ -122,4 +73,15 @@ module.exports = {
       },
     ],
   },
+};
+
+module.exports = () => {
+  switch (process.env.NODE_ENV) {
+    case 'development':
+      return merge([webpackConfigCommon, webpackConfigDev]);
+    case 'production':
+      return merge(webpackConfigCommon, webpackConfigProd);
+    default:
+      throw new Error('No matching configuration was found!');
+  }
 };

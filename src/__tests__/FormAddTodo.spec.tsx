@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import '@testing-library/jest-dom/extend-expect';
+import renderer from 'react-test-renderer';
 import {
   render, fireEvent, screen, cleanup,
 } from '@testing-library/react';
@@ -45,4 +46,15 @@ test('it checks request to server to add todo', () => {
   fireEvent.change(input, { target: { value: 'buy water' } });
   fireEvent.click(screen.getByRole('button', { name: 'Add Todo' }));
   expect(addTodo).toBeCalled();
+});
+
+test('it renders correctly formAddTodo', () => {
+  const tree = renderer
+    .create(
+      <Provider store={store}>
+        <FormAddTodo />
+      </Provider>,
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });

@@ -4,7 +4,7 @@ import List from "@material-ui/core/List";
 import { RootState } from "../../../redux/reducers/rootReducer";
 import { deleteTodoRequest, changeTodoRequest } from "../../../redux/actions/todo";
 import TodoListItem from "./TodoListItem";
-import { ITodo } from '../../../types';
+import { Todo } from '../../../types';
 
 export const TodoList: React.FC = () => {
 
@@ -27,7 +27,7 @@ export const TodoList: React.FC = () => {
 
   return (
     <List data-testid={"todo-list-component"}>
-      {list.map((todo: ITodo) => (
+      {list.map((todo: Todo) => (
         <TodoListItem
           key={todo.id}
           todo={todo}

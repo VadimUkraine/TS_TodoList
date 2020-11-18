@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import '@testing-library/jest-dom/extend-expect';
+import renderer from 'react-test-renderer';
 import {
   render, screen, cleanup,
 } from '@testing-library/react';
@@ -36,4 +37,15 @@ afterEach(cleanup);
 
 test('it renders component', () => {
   expect(screen.getAllByRole('listitem')).toHaveLength(2);
+});
+
+test('it renders correctly todoList', () => {
+  const tree = renderer
+    .create(
+      <Provider store={store}>
+        <TodoList />
+      </Provider>,
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });
