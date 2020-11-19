@@ -19,30 +19,3 @@ npm run stats - starts the plugin to show bundle size for static development fil
 npm run eslint - starts the plugin eslint to find errors and warnings on the whole project
 
 pre-commit - husky plugin is installed. If you try to do a commit - the plugin starts the plugin lint-staged, which will check the code for errors. If there are errors - commit be failed.
-
-# About project structure
-
-After working on several big projects I came up with the following folder structure:
-
-src - main folder, containing the following folders: components, global, hoc, hooks, pages
-
-components - contains common components that are used throughout the project and from which the main project pages are created
-
-global  - here we store images, styles, video, audio files, api files, error handlers, utilities
-
-hoc - here we store react hoc components
-
-hooks - here we store custom react hooks
-
-pages - contains files of project pages that consists from files of the following folders: components, global, hoc, hooks
-
-In folder pages, each page has its own files concerning actions, sagas, constants, interfaces, reducer, utils that the specific page uses.
-This is done in order not to run through all the files in some shared folder with actions to find a specific action/reducer. saga and so on.
-
-Root saga and reducer moved to the folder level of src
-
-
-
-
-
-
