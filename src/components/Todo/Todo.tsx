@@ -25,7 +25,7 @@ export const Todo: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.todoStyles} data-testid={"todo-root-component"}>
+    <div className={classes.todoStyles} data-testid="todo-root-component">
       <Helmet>
         <meta name="description" content="The PWA Todos"/>
         <meta name="theme-color" content="#F4F4F4"/>

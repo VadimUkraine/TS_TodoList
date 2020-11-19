@@ -11,7 +11,14 @@
     "padded-blocks": 0,
     "@typescript-eslint/no-var-requires": "warn",
     "no-undef": "warn",
-    "no-restricted-globals": "warn"
+    "no-restricted-globals": "warn",
+    "react/jsx-curly-brace-presence": [
+      2, 
+      { 
+        "props": "never", 
+        "children": "never" 
+      }
+    ]
   },
   "settings": {
     "react": {
@@ -20,15 +27,17 @@
   },
   "env": {
     "es6": true,
-    "browser": true
+    "browser": true,
+    "node": true
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
     "airbnb-base",
+    "prettier",
+    "eslint:recommended",
+    "plugin:react/recommended", 
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:jest/recommended"
+    "plugin:jest/recommended",
+    "plugin:import/recommended"
   ]
 }
-

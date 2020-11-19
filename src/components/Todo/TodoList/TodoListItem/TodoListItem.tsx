@@ -94,7 +94,7 @@ export const TodoListItem: React.FC<Props> = ({
   return (
       <ListItem
       className={classes.todoItem}
-      data-testid={"todo-list-item"}
+      data-testid="todo-list-item"
       >
         <div className={classes.todoItemContent}>
           {editID !== todo.id && <ListItemText

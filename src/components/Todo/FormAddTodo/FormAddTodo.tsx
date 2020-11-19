@@ -42,7 +42,7 @@ export const FormAddTodo: React.FC = () => {
       noValidate
       autoComplete="off"
       onSubmit={handleSubmit}
-      data-testid={"todo-form"}
+      data-testid="todo-form"
      >
         <TextField
           className={classes.textFieldStyles}
@@ -57,7 +57,7 @@ export const FormAddTodo: React.FC = () => {
           variant="contained"
           color="primary"
           onClick={handleAddTodo}
-          data-testid={"todo-form-add-button"}
+          data-testid="todo-form-add-button"
         >
           Add Todo
         </Button>

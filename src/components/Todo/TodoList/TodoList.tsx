@@ -26,7 +26,7 @@ export const TodoList: React.FC = () => {
   };
 
   return (
-    <List data-testid={"todo-list-component"}>
+    <List data-testid="todo-list-component">
       {list.map((todo: Todo) => (
         <TodoListItem
           key={todo.id}

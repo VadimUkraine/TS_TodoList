@@ -1,6 +1,6 @@
-const staticCacheName = "site-static-v1";
+const staticCacheName = 'site-static-v1';
 
-self.addEventListener("install", (evt) => {
+self.addEventListener('install', (evt) => {
   evt.waitUntil(
     caches.open(staticCacheName).then((cache) => {
       cache.addAll(serviceWorkerOption.assets);
@@ -8,7 +8,7 @@ self.addEventListener("install", (evt) => {
   );
 });
 
-self.addEventListener("activate", (evt) => {
+self.addEventListener('activate', (evt) => {
   evt.waitUntil(
     caches.keys().then((keys) => (
       Promise.all(keys
@@ -18,7 +18,7 @@ self.addEventListener("activate", (evt) => {
   );
 });
 
-self.addEventListener("fetch", (evt) => {
+self.addEventListener('fetch', (evt) => {
   evt.respondWith(
     caches.match(evt.request).then((cacheRes) => (cacheRes || fetch(evt.request))),
   );
